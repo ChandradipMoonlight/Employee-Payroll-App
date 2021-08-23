@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "employee-payroll-angular"
+    }
+  },
+  "defaultProject": "employee-payroll-angular",
+  "cli": {
+    "analytics": "1c98cb8c-1052-475b-a2db-2345b1d56cee"
+  }
 }
