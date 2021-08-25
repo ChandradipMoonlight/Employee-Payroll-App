@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../../service/http.service';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  public employeeCount: Number = 10;
 
-  constructor() { }
+
+  constructor(private httpService: HttpService) { }
 
   ngOnInit(): void {
+    this.httpService.getEmployeeData().subscribe(data=>console.log(data));
   }
 
 }
