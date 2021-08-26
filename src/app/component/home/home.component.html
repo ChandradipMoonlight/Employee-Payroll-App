@@ -23,8 +23,21 @@
                 <th>Start Date</th>
                 <th>Actions</th>
             </tr>
-            <tr>
+
+            <tr *ngFor="let emp of employeeDetails">
+                <td>{{ emp.imagePath }}</td>
+                <td>{{ emp.name }}</td>
+                <td>{{ emp.gender }}</td>
+                <td>{{ emp.department }}</td>
+                <td>{{ emp.salary }}</td>
+                <td>{{ emp.startDate }}</td>
                 <td>
+                    <img id="1" onclick="remove(this)" src="../assets/icons/delete-black-18dp.svg" alt="delete">
+                    <img id="1" onclick="update(this)" src="../assets/icons/create-black-18dp.svg" alt="edit">
+
+                </td>
+
+                <!--<td>
                     <img class="profile" src="../assets/profile-images/Ellipse -2.png" alt="">
                 </td>
                 <td>Narayan Mahadevan</td>
@@ -37,8 +50,8 @@
                 <td>1 Nov 2020</td>
                 <td>
                     <img id="1" onclick="remove(this)" src="../assets/icons/delete-black-18dp.svg" alt="delete">
-                    <img id="1" onclick="update(this)" src="../assets/icons/create-black-18dp.svg" alt="edit">
-                </td>
+                    <img id="1" onclick="update(this)" src="../assets/icons/create-black-18dp.svg" alt="edit"> -->
+                <!-- </td> -->
             </tr>
         </table>
     </div>
