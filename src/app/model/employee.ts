@@ -1,11 +1,11 @@
 export class Employee {
-  constructor(public id: number,
-              public name: string,
-              public imagePath: string,
-              public gender: string,
-              public salary: number,
-              public startDate: Date,
-              public department: string,
-              public notes: string) {
-  }
+
+id: number;
+name: string;
+imagePath: string;
+gender: string;
+salary: number; 
+startDate: Date;
+department: string;
+notes: string;
 }
