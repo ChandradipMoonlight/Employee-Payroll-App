@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { Employee } from '../../model/employee';
 import { HttpService } from '../../service/http.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add',
@@ -40,6 +41,7 @@ export class AddComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private httpService: HttpService,
+    private router: Router,
     ) {
     this.employeeFormGroup = this.formBuilder.group({
       name: new FormControl(''),
@@ -83,6 +85,7 @@ export class AddComponent implements OnInit {
     this.employee = this.employeeFormGroup.value;
     this.httpService.addEmployeeData(this.employee).subscribe(response=> {
       console.log(response);
+      this.router.navigateByUrl("/home");
     });
   }
 

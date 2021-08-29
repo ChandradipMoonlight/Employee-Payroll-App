@@ -28,12 +28,16 @@
                 <td><img class="profile" src={{emp.imagePath}} alt=""></td>
                 <td>{{ emp.name }}</td>
                 <td>{{ emp.gender }}</td>
-                <td>{{ emp.department }}</td>
+                <td>
+                    <div class="dept-label" *ngFor="let department of emp.department">
+                        {{department}}
+                    </div>
+                </td>
                 <td>{{ emp.salary }}</td>
                 <td>{{ emp.startDate }}</td>
                 <td>
-                    <img id="1" onclick="remove(this)" src="../assets/icons/delete-black-18dp.svg" alt="delete">
-                    <img id="1" onclick="update(this)" src="../assets/icons/create-black-18dp.svg" alt="edit">
+                    <img id={{emp.id}} (click)="remove(emp.id)" src="../assets/icons/delete-black-18dp.svg" alt="delete">
+                    <img id={{emp.id}} (click)="update(emp.id)" src="../assets/icons/create-black-18dp.svg" alt="edit">
 
                 </td>
 
