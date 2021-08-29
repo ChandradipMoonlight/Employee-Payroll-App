@@ -25,7 +25,7 @@
             </tr>
 
             <tr *ngFor="let emp of employeeDetails">
-                <td>{{ emp.imagePath }}</td>
+                <td><img class="profile" src={{emp.imagePath}} alt=""></td>
                 <td>{{ emp.name }}</td>
                 <td>{{ emp.gender }}</td>
                 <td>{{ emp.department }}</td>

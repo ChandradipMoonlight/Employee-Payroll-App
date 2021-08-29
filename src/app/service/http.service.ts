@@ -8,15 +8,15 @@ import { Observable } from 'rxjs';
 })
 export class HttpService {
 
-  private baseUrl: string = "http://localhost:8082/"
+  private mainUrl: string = "http://localhost:8082/"
 
   constructor(private httpClient: HttpClient) { }
 
   getEmployeeData(): Observable<any>{
-    return this.httpClient.get(this.baseUrl+"get");
+    return this.httpClient.get(this.mainUrl+"get");
   }
 
-  addEmployeeData(employee: object): Observable<any> {
-    return this.httpClient.post(this.baseUrl+"create", employee);
+  addEmployeeData(employee: any): Observable<any> {
+    return this.httpClient.post(this.mainUrl+"add", employee);
   }
 }

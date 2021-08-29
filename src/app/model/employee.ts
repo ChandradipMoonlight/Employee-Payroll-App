@@ -6,6 +6,6 @@ imagePath: string;
 gender: string;
 salary: number; 
 startDate: Date;
-department: string;
+department: string[];
 notes: string;
 }
