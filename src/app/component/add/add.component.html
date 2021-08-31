@@ -16,21 +16,23 @@
         <div class="row-content">
             <label class="label text" for="profile">Profile Image </label>
             <div class="profile-radio-content">
-                <mat-radio-button name="profile" color="primary" value="../assets/profile-images/Ellipse -1.png" ngDefaultControl formControlName="imagePath">
-                    <img class="profile" id='image1' src="../assets/profile-images/Ellipse -1.png">
-                </mat-radio-button>
-                <mat-radio-button name="profile" color="primary" value="../assets/profile-images/Ellipse -2.png" ngDefaultControl formControlName="imagePath">
-                    <img class="profile" id='image2' src="../assets/profile-images/Ellipse -2.png">
-                </mat-radio-button>
-                <mat-radio-button name="profile" color="primary" value="../assets/profile-images/Ellipse -3.png" ngDefaultControl formControlName="imagePath">
-                    <img class="profile" id='image3' src="../assets/profile-images/Ellipse -3.png">
-                </mat-radio-button>
-                <mat-radio-button name="profile" color="primary" value="../assets/profile-images/Ellipse -4.png" ngDefaultControl formControlName="imagePath">
-                    <img class="profile" id='image4' src="../assets/profile-images/Ellipse -4.png">
-                </mat-radio-button>
-                <mat-radio-button name="profile" color="primary" value="../assets/profile-images/Ellipse -5.png" ngDefaultControl formControlName="imagePath">
-                    <img class="profile" id='image5' src="../assets/profile-images/Ellipse -5.png">
-                </mat-radio-button>
+                <mat-radio-group ngDefaultControl formControlName="imagePath">
+                    <mat-radio-button name="profile" color="primary" value="../assets/profile-images/Ellipse -1.png">
+                        <img class="profile" id='image1' src="../assets/profile-images/Ellipse -1.png">
+                    </mat-radio-button>
+                    <mat-radio-button name="profile" color="primary" value="../assets/profile-images/Ellipse -2.png">
+                        <img class="profile" id='image2' src="../assets/profile-images/Ellipse -2.png">
+                    </mat-radio-button>
+                    <mat-radio-button name="profile" color="primary" value="../assets/profile-images/Ellipse -3.png">
+                        <img class="profile" id='image3' src="../assets/profile-images/Ellipse -3.png">
+                    </mat-radio-button>
+                    <mat-radio-button name="profile" color="primary" value="../assets/profile-images/Ellipse -4.png">
+                        <img class="profile" id='image4' src="../assets/profile-images/Ellipse -4.png">
+                    </mat-radio-button>
+                    <mat-radio-button name="profile" color="primary" value="../assets/profile-images/Ellipse -5.png">
+                        <img class="profile" id='image5' src="../assets/profile-images/Ellipse -5.png">
+                    </mat-radio-button>
+                </mat-radio-group>
             </div>
         </div>
 
@@ -39,12 +41,14 @@
         <div class="row-content">
             <label class="label text" for="gender">Gender</label>
             <div>
-                <mat-radio-button type="radio" name="gender" color="primary" value="male" ngDefaultControl formControlName="gender">
-                    <label class="text" for="male">Male</label>
-                </mat-radio-button>
-                <mat-radio-button type="radio" name="gender" color="primary" value="female" ngDefaultControl formControlName="gender">
-                    <label class="text" for="female">Female</label>
-                </mat-radio-button>
+                <mat-radio-group ngDefaultControl formControlName="gender">
+                    <mat-radio-button type="radio" name="gender" color="primary" value="male">
+                        <label class="text" for="male">Male</label>
+                    </mat-radio-button>
+                    <mat-radio-button type="radio" name="gender" color="primary" value="female">
+                        <label class="text" for="female">Female</label>
+                    </mat-radio-button>
+                </mat-radio-group>
             </div>
         </div>
 
@@ -52,7 +56,7 @@
         <div class="row-content">
             <label class="label text" for="department">Department</label>
             <div *ngFor="let department of departments">
-                <mat-checkbox #checkbox class="checkbox" type="checkbox" color="primary" [value]="department.value" (change)="onCheckboxChange($event)">
+                <mat-checkbox class="checkbox" type="checkbox" color="primary" [value]="department.value" (change)="onCheckboxChange($event)" [checked]="department.checked">
                     <label class="text">{{department.name}}</label>
                 </mat-checkbox>
             </div>

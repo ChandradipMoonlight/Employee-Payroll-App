@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../service/http.service';
 import { Employee } from '../../model/employee';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DataService } from '../../service/data.service';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,10 @@ export class HomeComponent implements OnInit {
 
   public employeeDetails: Employee[] = [];
   constructor(private httpService: HttpService,
-              private router: Router) { }
+              private router: Router,
+              private route: ActivatedRoute,
+              private dataService: DataService
+              ) { }
 
   ngOnInit(): void {
     this.httpService.getEmployeeData().subscribe(Response=>{
@@ -30,12 +34,12 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  update(id : number) {
-    this.router.navigateByUrl('/add');
-    // this.employeeDetails.entries();
-    this.httpService.updateEmployeeData(id, this.employeeDetails).subscribe(data=> {
-      console.log(data);    
-    });
+  update(employee : Employee) {
+    this.dataService.changeEmployee(employee);
+    this.router.navigateByUrl('update/' + employee.id);
+    // this.httpService.updateEmployeeData(employee.id, this.employeeDetails).subscribe(Response=> {
+      // console.log(Response);    
+    // });
   }
 
 }

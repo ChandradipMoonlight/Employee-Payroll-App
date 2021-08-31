@@ -4,6 +4,7 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 import { Employee } from '../../model/employee';
 import { HttpService } from '../../service/http.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { DataService } from '../../service/data.service';
 
 @Component({
   selector: 'app-add',
@@ -18,23 +19,28 @@ export class AddComponent implements OnInit {
   departments: Array<any> = [
     {
       name: "HR",
-      value: "HR"
+      value: "HR",
+      checked: false
     },
     {
       name: "Sales",
-      value: "Sales"
+      value: "Sales",
+      checked: false
     },
     {
       name: "Finance",
-      value: "Finance"
+      value: "Finance",
+      checked: false
     },
     {
       name: "Engineer",
-      value: "Engineer"
+      value: "Engineer",
+      checked: false
     },
     {
       name: "Other",
-      value: "Other"
+      value: "Other",
+      checked: false
     }
   ]
 
@@ -42,6 +48,8 @@ export class AddComponent implements OnInit {
     private formBuilder: FormBuilder,
     private httpService: HttpService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private dataService: DataService, 
     ) {
     this.employeeFormGroup = this.formBuilder.group({
       name: new FormControl(''),
@@ -55,6 +63,25 @@ export class AddComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    if(this.activatedRoute.snapshot.params['id'] !=undefined) {
+      this.dataService.currentEmployee.subscribe(employee=>{
+        if(Object.keys(employee).length !== 0) {
+          this.employeeFormGroup.get("name")?.setValue(employee.name);
+          this.employeeFormGroup.get("imagePath")?.setValue(employee.imagePath);
+          this.employeeFormGroup.get("gender")?.setValue(employee.gender);
+          this.employeeFormGroup.get("startDate")?.setValue(employee.startDate);
+          this.employeeFormGroup.get("salary")?.setValue(employee.salary);
+          this.employeeFormGroup.get("notes")?.setValue(employee.notes);
+          employee.department.forEach(departmentElements=> {
+            for (let index = 0; index < this.departments.length; index++) {
+              if(this.departments[index].name == departmentElements) {
+                this.departments[index].checked = true;
+              }
+            }
+          })
+        }
+      });
+    }
     console.log(this.employeeFormGroup);
   }
 
@@ -82,11 +109,20 @@ export class AddComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (this.activatedRoute.snapshot.params['id'] != undefined) {
+      console.log(this.employeeFormGroup.value);
+      this.httpService.updateEmployeeData(this.activatedRoute.snapshot.params['id'],
+      this.employeeFormGroup.value).subscribe(Response =>{
+        console.log(Response);
+      this.router.navigateByUrl("/home");
+
+      });
+    } else{
     this.employee = this.employeeFormGroup.value;
     this.httpService.addEmployeeData(this.employee).subscribe(response=> {
       console.log(response);
       this.router.navigateByUrl("/home");
-    });
+      });
+    }
   }
-
 }
