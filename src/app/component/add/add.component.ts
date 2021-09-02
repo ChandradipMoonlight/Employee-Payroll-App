@@ -69,6 +69,7 @@ export class AddComponent implements OnInit {
           this.employeeFormGroup.get("name")?.setValue(employee.name);
           this.employeeFormGroup.get("imagePath")?.setValue(employee.imagePath);
           this.employeeFormGroup.get("gender")?.setValue(employee.gender);
+          const department: FormArray = this.employeeFormGroup.get('department') as FormArray;
           this.employeeFormGroup.get("startDate")?.setValue(employee.startDate);
           this.employeeFormGroup.get("salary")?.setValue(employee.salary);
           this.employeeFormGroup.get("notes")?.setValue(employee.notes);
@@ -76,6 +77,7 @@ export class AddComponent implements OnInit {
             for (let index = 0; index < this.departments.length; index++) {
               if(this.departments[index].name == departmentElements) {
                 this.departments[index].checked = true;
+                department.push(new FormControl(this.departments[index].value));
               }
             }
           })
