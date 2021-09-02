@@ -34,7 +34,7 @@
                     </div>
                 </td>
                 <td>{{ emp.salary }}</td>
-                <td>{{ emp.startDate }}</td>
+                <td>{{ emp.startDate | date:"dd MMM yyy" }}</td>
                 <td>
                     <img id={{emp.id}} (click)="remove(emp.id)" src="../assets/icons/delete-black-18dp.svg" alt="delete">
                     <img id={{emp.id}} (click)="update(emp)" src="../assets/icons/create-black-18dp.svg" alt="edit">
