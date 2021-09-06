@@ -33,7 +33,7 @@
                         {{department}}
                     </div>
                 </td>
-                <td>{{ emp.salary }}</td>
+                <td>{{ emp.salary | currency:'₹ ' }}</td>
                 <td>{{ emp.startDate | date:"dd MMM yyy" }}</td>
                 <td>
                     <img id={{emp.id}} (click)="remove(emp.id)" src="../assets/icons/delete-black-18dp.svg" alt="delete">
